@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>__TITLE__</title>
+<style>
+html,body{margin:0;height:100%;overflow:hidden;background:linear-gradient(#e9ecef,#b8bec6);font:14px system-ui,sans-serif;color:#1b1f24}
+canvas{display:block;width:100%;height:100%;touch-action:none;cursor:grab}
+#ui{position:absolute;top:12px;left:12px;background:rgba(255,255,255,.88);border-radius:10px;padding:10px 12px;max-width:260px;box-shadow:0 2px 10px rgba(0,0,0,.15)}
+#ui h1{font-size:15px;margin:0 0 6px}#ui p{margin:4px 0 8px;font-size:12px;color:#444}
+#ui label{display:block;margin:3px 0;cursor:pointer;text-transform:capitalize}
+#ui button{margin:6px 4px 0 0;padding:5px 9px;border:1px solid #888;border-radius:6px;background:#fff;cursor:pointer}
+#load{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:18px}
+</style></head><body>
+<canvas id="c"></canvas><div id="load">Loading model…</div>
+<div id="ui"><h1>__TITLE__</h1><p>Drag to spin · right-drag or shift-drag to pan · scroll or pinch to zoom</p>
+<div id="cats"></div>
+<div id="ride"><b>Ride height</b> <span id="rh"></span><br><input id="rs" type="range" min="0" max="1000" style="width:100%"><br><button data-r="Laid out">Laid out</button><button data-r="Drive">Drive</button><button data-r="Lifted">Lifted</button></div><hr style="border:0;border-top:1px solid #ccc">
+<button data-v="front">Front ¾</button><button data-v="rear">Rear ¾</button><button data-v="side">Side</button><button data-v="top">Top</button><button data-v="bay">Engine bay</button></div>
+<script>
+const RIDE=__RIDE__;const META=__META__;const DATA="__DATA__";
+(async()=>{
+const bin=Uint8Array.from(atob(DATA),c=>c.charCodeAt(0));
+const buf=await new Response(new Blob([bin]).stream().pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();
+const dv=new DataView(buf);let off=0;
+const cv=document.getElementById('c'),gl=cv.getContext('webgl',{antialias:true});
+gl.getExtension('OES_element_index_uint');
+const vs=`attribute vec3 p;attribute vec3 n;attribute float w;uniform float dz;uniform mat4 mvp;varying vec3 vn;varying vec3 vp;void main(){vn=n;vec3 q=p+vec3(0.,0.,w*dz);vp=q;gl_Position=mvp*vec4(q,1.);}`;
+const fs=`precision mediump float;varying vec3 vn;varying vec3 vp;uniform vec3 col;uniform vec3 eye;uniform float a;void main(){vec3 N=normalize(vn);vec3 V=normalize(eye-vp);if(dot(N,V)<0.)N=-N;
+vec3 L1=normalize(vec3(.4,.5,1.)),L2=normalize(vec3(-.6,-.3,.4));float d=max(dot(N,L1),0.)*.75+max(dot(N,L2),0.)*.3+.22;
+float s=pow(max(dot(reflect(-L1,N),V),0.),40.)*.45;float rim=pow(1.-max(dot(N,V),0.),3.)*.18;gl_FragColor=vec4(col*d+vec3(s+rim),a);}`;
+function sh(t,s){const o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);return o}
+const pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,vs));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,fs));gl.linkProgram(pr);gl.useProgram(pr);
+const L={w:gl.getAttribLocation(pr,'w'),dz:gl.getUniformLocation(pr,'dz'),p:gl.getAttribLocation(pr,'p'),n:gl.getAttribLocation(pr,'n'),mvp:gl.getUniformLocation(pr,'mvp'),col:gl.getUniformLocation(pr,'col'),eye:gl.getUniformLocation(pr,'eye'),a:gl.getUniformLocation(pr,'a')};
+const parts=[];const cats={};
+for(const [name,color,nv,nf,cat] of META){
+  const P=new Float32Array(nv*3);let o=[0,0,0];
+  for(let i=0;i<nv;i++)for(let k=0;k<3;k++){o[k]+=dv.getInt16(off,true);off+=2;P[i*3+k]=o[k]/2}
+  const I=new Uint32Array(nf*3);let pv=0;for(let i=0;i<nf*3;i++){pv+=dv.getInt32(off,true);off+=4;I[i]=pv}
+  const N=new Float32Array(nv*3);
+  for(let t=0;t<nf;t++){const a=I[t*3]*3,b=I[t*3+1]*3,c=I[t*3+2]*3;
+    const ux=P[b]-P[a],uy=P[b+1]-P[a+1],uz=P[b+2]-P[a+2],wx=P[c]-P[a],wy=P[c+1]-P[a+1],wz=P[c+2]-P[a+2];
+    const nx=uy*wz-uz*wy,ny=uz*wx-ux*wz,nz=ux*wy-uy*wx;for(const j of [a,b,c]){N[j]+=nx;N[j+1]+=ny;N[j+2]+=nz}}
+  const md=(RIDE.modes[name]||[1,0,0,0,0]);const W=new Float32Array(nv);
+  for(let i=0;i<nv;i++){const x=P[i*3],y=P[i*3+1],z=P[i*3+2],m=md[0],q=md;let v=1;
+    if(m===0)v=0;else if(m===2)v=(q[1]-Math.abs(y))/(q[1]-q[2]);else if(m===3){const lo=x>0?q[1]:q[3],hi=x>0?q[2]:q[4],wl=x>0?(q[5]||0):0;v=wl+(1-wl)*Math.min(Math.max((z-lo)/(hi-lo),0),1)}else if(m===4)v=(x-q[2])/(q[1]-q[2]);
+    W[i]=Math.min(Math.max(v,0),1)}
+  const mk=(d,t)=>{const b=gl.createBuffer();gl.bindBuffer(t,b);gl.bufferData(t,d,gl.STATIC_DRAW);return b};
+  parts.push({name,color,cat,pb:mk(P,gl.ARRAY_BUFFER),wb:mk(W,gl.ARRAY_BUFFER),nb:mk(N,gl.ARRAY_BUFFER),ib:mk(I,gl.ELEMENT_ARRAY_BUFFER),n:nf*3,glass:(/glass/i.test(name)||name==='Windshield')});
+  cats[cat]=true;
+}
+const cd=document.getElementById('cats');
+for(const c of Object.keys(cats)){const l=document.createElement('label');l.innerHTML=`<input type="checkbox" checked> ${c}`;l.firstChild.onchange=e=>{cats[c]=e.target.checked;draw()};cd.appendChild(l)}
+let yaw=.75,pitch=.32,dist=7600,tgt=[0,0,600];
+const S=RIDE.states,lo=S['Laid out'],hi=S['Lifted'];let dz=0;const rs=document.getElementById('rs'),rh=document.getElementById('rh');
+function setRide(v){dz=v;rs.value=Math.round((v-lo)/(hi-lo)*1000);rh.textContent=((RIDE.lowest_sprung_z+v)/25.4).toFixed(1)+' in rocker height';draw()}
+rs.oninput=()=>setRide(lo+(hi-lo)*rs.value/1000);
+document.querySelectorAll('#ride button').forEach(b=>b.onclick=()=>setRide(S[b.dataset.r]));
+const VIEWS={front:[.75,.32,7600,[0,0,600]],rear:[2.45,.3,7600,[0,0,600]],side:[1.5708,.03,7200,[0,0,650]],top:[0,1.55,8200,[0,0,0]],bay:[.6,.6,3600,[1150,0,600]]};
+document.querySelectorAll('#ui button[data-v]').forEach(b=>b.onclick=()=>{[yaw,pitch,dist,tgt]=structuredClone(VIEWS[b.dataset.v]);
+  const bay=b.dataset.v==='bay';const hb=[...cd.querySelectorAll('label')].find(l=>l.textContent.trim()==='hood');if(hb){hb.firstChild.checked=!bay;cats.hood=!bay}draw()});
+function persp(f,a,n,fa){const t=1/Math.tan(f/2);return[t/a,0,0,0,0,t,0,0,0,0,(fa+n)/(n-fa),-1,0,0,2*fa*n/(n-fa),0]}
+function mul(a,b){const r=new Array(16).fill(0);for(let i=0;i<4;i++)for(let j=0;j<4;j++)for(let k=0;k<4;k++)r[j*4+i]+=a[k*4+i]*b[j*4+k];return r}
+function look(e,c,u){const z=norm(sub(e,c)),x=norm(cross(u,z)),y=cross(z,x);return[x[0],y[0],z[0],0,x[1],y[1],z[1],0,x[2],y[2],z[2],0,-dot(x,e),-dot(y,e),-dot(z,e),1]}
+const sub=(a,b)=>a.map((v,i)=>v-b[i]),dot=(a,b)=>a[0]*b[0]+a[1]*b[1]+a[2]*b[2],cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]],norm=a=>{const l=Math.hypot(...a);return a.map(v=>v/l)};
+function eye(){return[tgt[0]+dist*Math.cos(pitch)*Math.cos(yaw),tgt[1]+dist*Math.cos(pitch)*Math.sin(yaw),tgt[2]+dist*Math.sin(pitch)]}
+function draw(){const w=cv.clientWidth*devicePixelRatio,h=cv.clientHeight*devicePixelRatio;if(cv.width!==w||cv.height!==h){cv.width=w;cv.height=h}
+  gl.viewport(0,0,w,h);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.enable(gl.DEPTH_TEST);
+  const e=eye();const up=Math.abs(pitch)>1.5?[Math.cos(yaw)*-1,Math.sin(yaw)*-1,0]:[0,0,1];
+  gl.uniform1f(L.dz,dz);gl.uniformMatrix4fv(L.mvp,false,mul(persp(.52,w/h,50,60000),look(e,tgt,up)));gl.uniform3fv(L.eye,e);
+  for(const pass of [0,1]){if(pass){gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);gl.depthMask(false)}
+   for(const q of parts){if(!cats[q.cat]||q.glass!==!!pass)continue;
+    gl.bindBuffer(gl.ARRAY_BUFFER,q.pb);gl.enableVertexAttribArray(L.p);gl.vertexAttribPointer(L.p,3,gl.FLOAT,false,0,0);
+    gl.bindBuffer(gl.ARRAY_BUFFER,q.nb);gl.enableVertexAttribArray(L.n);gl.vertexAttribPointer(L.n,3,gl.FLOAT,true,0,0);
+    gl.bindBuffer(gl.ARRAY_BUFFER,q.wb);gl.enableVertexAttribArray(L.w);gl.vertexAttribPointer(L.w,1,gl.FLOAT,false,0,0);
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,q.ib);gl.uniform3fv(L.col,q.color);gl.uniform1f(L.a,pass?.45:1);gl.drawElements(gl.TRIANGLES,q.n,gl.UNSIGNED_INT,0)}}
+  gl.disable(gl.BLEND);gl.depthMask(true)}
+let drag=null;const pts=new Map();
+cv.oncontextmenu=e=>e.preventDefault();
+cv.onpointerdown=e=>{cv.setPointerCapture(e.pointerId);pts.set(e.pointerId,[e.clientX,e.clientY]);drag={x:e.clientX,y:e.clientY,pan:e.button===2||e.shiftKey}};
+cv.onpointerup=cv.onpointercancel=e=>{pts.delete(e.pointerId);drag=null};
+cv.onpointermove=e=>{if(!drag)return;
+  if(pts.size===2){const o=[...pts.values()];const d0=Math.hypot(o[0][0]-o[1][0],o[0][1]-o[1][1]);pts.set(e.pointerId,[e.clientX,e.clientY]);const n=[...pts.values()];const d1=Math.hypot(n[0][0]-n[1][0],n[0][1]-n[1][1]);dist*=d0/d1;dist=Math.min(Math.max(dist,800),30000);draw();return}
+  const dx=e.clientX-drag.x,dy=e.clientY-drag.y;drag.x=e.clientX;drag.y=e.clientY;pts.set(e.pointerId,[e.clientX,e.clientY]);
+  if(drag.pan){const s=dist/900;tgt[0]+=(dx*Math.sin(yaw)+dy*Math.cos(yaw)*Math.sin(pitch))*s;tgt[1]+=(-dx*Math.cos(yaw)+dy*Math.sin(yaw)*Math.sin(pitch))*s;tgt[2]+=dy*Math.cos(pitch)*s}
+  else{yaw-=dx*.008;pitch=Math.min(Math.max(pitch+dy*.008,-1.55),1.55)}draw()};
+cv.onwheel=e=>{e.preventDefault();dist*=Math.exp(e.deltaY*.0012);dist=Math.min(Math.max(dist,800),30000);draw()};
+addEventListener('resize',draw);document.getElementById('load').remove();setRide(0);
+})().catch(err=>{document.getElementById('load').textContent='Viewer error: '+err.message});
+</script></body></html>

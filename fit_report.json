@@ -1,0 +1,190 @@
+{
+  "method": "mesh distance (FCL), accurate to about 3 mm",
+  "min_clearance_target_mm": 10,
+  "lowest_points_laid_out_mm": {
+    "Rockers_and_panel_lines": 163.5,
+    "Front_splitter": 110.0,
+    "Body_shell": 175.0,
+    "Dual_exhaust": 174.6,
+    "Hellcat_engine_block": 216.0,
+    "Eight_speed_automatic": 176.9,
+    "Custom_box_frame": 201.9,
+    "Trans_crossmember": 201.6,
+    "Rear_diffuser": 210.0
+  },
+  "ride_states": {
+    "Laid out": {
+      "rocker_height_in": 6.4,
+      "prop_deg_up_toward_rear": -0.53,
+      "ujoint_working_deg": 1.47
+    },
+    "Drive": {
+      "rocker_height_in": 8.4,
+      "prop_deg_up_toward_rear": -2.74,
+      "ujoint_working_deg": -0.74
+    },
+    "Lifted": {
+      "rocker_height_in": 16.4,
+      "prop_deg_up_toward_rear": -11.4,
+      "ujoint_working_deg": -9.4
+    }
+  },
+  "note_driveline": "Pinion is set parallel to the crank line at drive height; front and rear U-joint angles match.",
+  "drive_height_checks": [
+    {
+      "part": "Front_air_dam",
+      "against": "Fog_light_recessed_buckets",
+      "gap_mm": 10.4,
+      "status": "ok"
+    },
+    {
+      "part": "Hellcat_engine_block",
+      "against": "Custom_box_frame",
+      "gap_mm": 10.9,
+      "status": "ok"
+    },
+    {
+      "part": "Dual_exhaust",
+      "against": "Body_shell",
+      "gap_mm": 11.2,
+      "status": "ok"
+    },
+    {
+      "part": "Ford_9in_axle_tubes",
+      "against": "Air_springs",
+      "gap_mm": 12.0,
+      "status": "ok"
+    },
+    {
+      "part": "Dual_exhaust",
+      "against": "Fuel_cell",
+      "gap_mm": 13.4,
+      "status": "ok"
+    },
+    {
+      "part": "Eight_speed_automatic",
+      "against": "Trans_crossmember",
+      "gap_mm": 14.0,
+      "status": "ok"
+    },
+    {
+      "part": "Long_tube_headers",
+      "against": "Firewall",
+      "gap_mm": 15.1,
+      "status": "ok"
+    },
+    {
+      "part": "Cold_air_intake",
+      "against": "Electric_fans_and_shroud",
+      "gap_mm": 17.0,
+      "status": "ok"
+    },
+    {
+      "part": "Supercharger_and_intake",
+      "against": "Blended_hood_scoop",
+      "gap_mm": 18.6,
+      "status": "ok"
+    },
+    {
+      "part": "Supercharger_lid_ribs",
+      "against": "Blended_hood_scoop",
+      "gap_mm": 18.8,
+      "status": "ok"
+    },
+    {
+      "part": "Supercharger_and_intake",
+      "against": "Hood",
+      "gap_mm": 20.3,
+      "status": "ok"
+    },
+    {
+      "part": "Eight_speed_automatic",
+      "against": "Transmission_tunnel",
+      "gap_mm": 22.8,
+      "status": "ok"
+    },
+    {
+      "part": "Accessory_pulleys",
+      "against": "Blended_hood_scoop",
+      "gap_mm": 24.6,
+      "status": "ok"
+    },
+    {
+      "part": "Long_tube_headers",
+      "against": "Dual_exhaust",
+      "gap_mm": 0.0,
+      "status": "intended contact"
+    },
+    {
+      "part": "Dual_exhaust",
+      "against": "Custom_box_frame",
+      "gap_mm": 0.0,
+      "status": "intended contact"
+    },
+    {
+      "part": "Dual_exhaust",
+      "against": "Trans_crossmember",
+      "gap_mm": 0.0,
+      "status": "intended contact"
+    },
+    {
+      "part": "Dual_exhaust",
+      "against": "Rear_diffuser",
+      "gap_mm": 0.0,
+      "status": "intended contact"
+    },
+    {
+      "part": "Front_air_dam",
+      "against": "Body_shell",
+      "gap_mm": 0.0,
+      "status": "intended contact"
+    },
+    {
+      "part": "Hellcat_cylinder_heads",
+      "against": "Long_tube_headers",
+      "gap_mm": 6.0,
+      "status": "intended contact"
+    },
+    {
+      "part": "Ford_9in_axle_tubes",
+      "against": "Brake_rotors",
+      "gap_mm": 10.0,
+      "status": "intended contact"
+    }
+  ],
+  "laid_out_checks": [
+    {
+      "part": "Ford_9in_center_section",
+      "against": "Bump_stops (laid out)",
+      "gap_mm": 0.0,
+      "status": "intended contact"
+    },
+    {
+      "part": "Tires",
+      "against": "Body_shell (laid out)",
+      "gap_mm": 9.4,
+      "status": "tight"
+    },
+    {
+      "part": "Ford_9in_axle_tubes",
+      "against": "Dual_exhaust (laid out)",
+      "gap_mm": 10.2,
+      "status": "ok"
+    },
+    {
+      "part": "Tires",
+      "against": "Molded_integrated_fender_flares (laid out)",
+      "gap_mm": 20.0,
+      "status": "ok"
+    }
+  ],
+  "moving_parts_all_ride_heights": [
+    {
+      "state": "Laid out",
+      "part": "Tires",
+      "against": "Body_shell",
+      "gap_mm": 9.4,
+      "status": "tight"
+    }
+  ]
+}

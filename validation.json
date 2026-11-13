@@ -1,0 +1,854 @@
+{
+  "parameters": {
+    "wheelbase": 2743,
+    "front_track": 1580,
+    "rear_track": 1570,
+    "front_tire_diameter": 718,
+    "rear_tire_diameter": 790,
+    "front_tire_width": 335,
+    "rear_tire_width": 405,
+    "front_rim_diameter": 508.0,
+    "rear_rim_diameter": 558.8,
+    "front_rim_width": 317.5,
+    "rear_rim_width": 381.0,
+    "front_offset": -12,
+    "rear_offset": -32,
+    "ride_lift": 0,
+    "rear_lip_raise": 101.6,
+    "body_length": 4880,
+    "body_width": 1950
+  },
+  "drivetrain": {
+    "block_front_x": 1630,
+    "crank_z_front": 425,
+    "tilt_deg": 2.0,
+    "block_length": 560,
+    "bank_angle": 45,
+    "bore_spacing": 113.3,
+    "bank_stagger": 22,
+    "deck_height": 230,
+    "skirt_half_width": 215,
+    "head_height": 130,
+    "head_width": 250,
+    "cover_height": 45,
+    "cover_width": 190,
+    "sump_length": 230,
+    "sump_depth": 80,
+    "pan_front_depth": 15,
+    "blower_height": 480,
+    "blower_pulley_z": 420,
+    "blower_pulley_r": 55,
+    "crank_pulley_r": 105,
+    "throttle_body_z": 315,
+    "throttle_body_r": 52,
+    "trans": {
+      "bell_length": 230,
+      "bell_r_front": 205,
+      "bell_r_rear": 175,
+      "case_length": 470,
+      "case_r_front": 165,
+      "case_r_rear": 135,
+      "tail_length": 180,
+      "tail_r": 75
+    },
+    "collector_x": 1010,
+    "collector_y": 335,
+    "collector_z": 285,
+    "exhaust_z": 234,
+    "airbox_center": [
+      1790,
+      -430,
+      640
+    ],
+    "airbox_size": [
+      110,
+      220,
+      200
+    ],
+    "prop_r": 45,
+    "pinion_length": 270,
+    "front_crossmember_z": 255,
+    "rear_arch_z": 650,
+    "firewall_x": 940,
+    "floor_z": 340,
+    "tunnel_clearance": 30,
+    "scoop_pocket_width_frac": 0.7,
+    "scoop_wall": 16,
+    "hood_pocket_floor_z": 740,
+    "min_clearance": 10,
+    "report_gap_under": 25
+  },
+  "aero": {
+    "splitter_ground_clearance": 125,
+    "splitter_thickness": 12,
+    "splitter_lip": 100,
+    "splitter_run_back": 270,
+    "dam_face_x": 2462,
+    "dam_top_z": 238
+  },
+  "parts": [
+    {
+      "name": "Body_shell",
+      "category": "body",
+      "valid": true,
+      "solids": 1,
+      "triangles": 1074
+    },
+    {
+      "name": "Fastback_roof",
+      "category": "body",
+      "valid": true,
+      "solids": 1,
+      "triangles": 44
+    },
+    {
+      "name": "Side_glass_-1",
+      "category": "body",
+      "valid": true,
+      "solids": 4,
+      "triangles": 32
+    },
+    {
+      "name": "Fastback_C_pillar_-1",
+      "category": "body",
+      "valid": true,
+      "solids": 1,
+      "triangles": 8
+    },
+    {
+      "name": "Side_glass_1",
+      "category": "body",
+      "valid": true,
+      "solids": 4,
+      "triangles": 32
+    },
+    {
+      "name": "Fastback_C_pillar_1",
+      "category": "body",
+      "valid": true,
+      "solids": 1,
+      "triangles": 8
+    },
+    {
+      "name": "Pillars",
+      "category": "body",
+      "valid": true,
+      "solids": 2,
+      "triangles": 400
+    },
+    {
+      "name": "Windshield",
+      "category": "body",
+      "valid": true,
+      "solids": 2,
+      "triangles": 16
+    },
+    {
+      "name": "Fastback_rear_glass",
+      "category": "body",
+      "valid": true,
+      "solids": 2,
+      "triangles": 16
+    },
+    {
+      "name": "Cage_windshield_and_A_legs",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 5,
+      "triangles": 1000
+    },
+    {
+      "name": "Cage_roof_rails_and_headers",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 7,
+      "triangles": 1400
+    },
+    {
+      "name": "Cage_main_hoop_and_fastback_legs",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 7,
+      "triangles": 1400
+    },
+    {
+      "name": "Cage_sill_rails_and_chassis_ties",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 12,
+      "triangles": 2400
+    },
+    {
+      "name": "Cage_rear_window_X_braces",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 2,
+      "triangles": 400
+    },
+    {
+      "name": "Cage_roof_and_quarter_window_outline",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 14,
+      "triangles": 2800
+    },
+    {
+      "name": "Fastback_rear_window_louver_blades",
+      "category": "louvers",
+      "valid": true,
+      "solids": 10,
+      "triangles": 120
+    },
+    {
+      "name": "Fastback_louver_frame_and_spines",
+      "category": "louvers",
+      "valid": true,
+      "solids": 6,
+      "triangles": 1200
+    },
+    {
+      "name": "Hood",
+      "category": "hood",
+      "valid": true,
+      "solids": 1,
+      "triangles": 80
+    },
+    {
+      "name": "Blended_hood_scoop",
+      "category": "hood",
+      "valid": true,
+      "solids": 1,
+      "triangles": 412
+    },
+    {
+      "name": "Scoop_recessed_inlet",
+      "category": "hood",
+      "valid": true,
+      "solids": 1,
+      "triangles": 12
+    },
+    {
+      "name": "Rear_deck",
+      "category": "body",
+      "valid": true,
+      "solids": 1,
+      "triangles": 28
+    },
+    {
+      "name": "Ducktail",
+      "category": "body",
+      "valid": true,
+      "solids": 1,
+      "triangles": 12
+    },
+    {
+      "name": "Door_fender_and_tail_panel_reveals",
+      "category": "body",
+      "valid": true,
+      "solids": 200,
+      "triangles": 38400
+    },
+    {
+      "name": "Fender_and_quarter_shoulder_crease",
+      "category": "body",
+      "valid": true,
+      "solids": 212,
+      "triangles": 26288
+    },
+    {
+      "name": "Lower_body_character_line",
+      "category": "body",
+      "valid": true,
+      "solids": 170,
+      "triangles": 17000
+    },
+    {
+      "name": "Hood_perimeter_panel_gaps",
+      "category": "hood",
+      "valid": true,
+      "solids": 162,
+      "triangles": 32400
+    },
+    {
+      "name": "Hood_longitudinal_stamp_lines",
+      "category": "hood",
+      "valid": true,
+      "solids": 72,
+      "triangles": 10656
+    },
+    {
+      "name": "Decklid_panel_gaps",
+      "category": "body",
+      "valid": true,
+      "solids": 69,
+      "triangles": 13800
+    },
+    {
+      "name": "Handle_-1",
+      "category": "body",
+      "valid": true,
+      "solids": 1,
+      "triangles": 12
+    },
+    {
+      "name": "Mirror_-1",
+      "category": "body",
+      "valid": true,
+      "solids": 2,
+      "triangles": 212
+    },
+    {
+      "name": "Handle_1",
+      "category": "body",
+      "valid": true,
+      "solids": 1,
+      "triangles": 12
+    },
+    {
+      "name": "Mirror_1",
+      "category": "body",
+      "valid": true,
+      "solids": 2,
+      "triangles": 212
+    },
+    {
+      "name": "Molded_integrated_fender_flares",
+      "category": "body",
+      "valid": true,
+      "solids": 8,
+      "triangles": 2128
+    },
+    {
+      "name": "Fender_flare_lips",
+      "category": "body",
+      "valid": true,
+      "solids": 4,
+      "triangles": 1944
+    },
+    {
+      "name": "Rockers_and_panel_lines",
+      "category": "body",
+      "valid": true,
+      "solids": 2,
+      "triangles": 24
+    },
+    {
+      "name": "Grille_recessed_tapered_duct",
+      "category": "body",
+      "valid": true,
+      "solids": 1,
+      "triangles": 64
+    },
+    {
+      "name": "Grille_shadow_backing",
+      "category": "body",
+      "valid": true,
+      "solids": 1,
+      "triangles": 12
+    },
+    {
+      "name": "Grille_full_width_bright_surround",
+      "category": "body",
+      "valid": true,
+      "solids": 1,
+      "triangles": 64
+    },
+    {
+      "name": "Grille_black_full_width_face",
+      "category": "body",
+      "valid": true,
+      "solids": 1,
+      "triangles": 464
+    },
+    {
+      "name": "Grille_fine_vertical_back_mesh",
+      "category": "body",
+      "valid": true,
+      "solids": 41,
+      "triangles": 492
+    },
+    {
+      "name": "Grille_horizontal_blades",
+      "category": "body",
+      "valid": true,
+      "solids": 9,
+      "triangles": 108
+    },
+    {
+      "name": "Twin_grille_insert_frames",
+      "category": "body",
+      "valid": true,
+      "solids": 2,
+      "triangles": 128
+    },
+    {
+      "name": "Grille_center_divider",
+      "category": "body",
+      "valid": true,
+      "solids": 1,
+      "triangles": 12
+    },
+    {
+      "name": "Slim_bright_front_bumper",
+      "category": "body",
+      "valid": true,
+      "solids": 1,
+      "triangles": 52
+    },
+    {
+      "name": "Lower_air_opening",
+      "category": "body",
+      "valid": true,
+      "solids": 1,
+      "triangles": 12
+    },
+    {
+      "name": "Lower_intake_fins",
+      "category": "body",
+      "valid": true,
+      "solids": 4,
+      "triangles": 48
+    },
+    {
+      "name": "Fog_light_recessed_buckets",
+      "category": "body",
+      "valid": true,
+      "solids": 2,
+      "triangles": 816
+    },
+    {
+      "name": "Fog_light_bright_bezels",
+      "category": "body",
+      "valid": true,
+      "solids": 2,
+      "triangles": 816
+    },
+    {
+      "name": "Fog_lights_below_bumper",
+      "category": "body",
+      "valid": true,
+      "solids": 2,
+      "triangles": 400
+    },
+    {
+      "name": "Recessed_headlight_buckets",
+      "category": "body",
+      "valid": true,
+      "solids": 2,
+      "triangles": 816
+    },
+    {
+      "name": "Headlights",
+      "category": "body",
+      "valid": true,
+      "solids": 2,
+      "triangles": 400
+    },
+    {
+      "name": "Headlight_bezels",
+      "category": "body",
+      "valid": true,
+      "solids": 2,
+      "triangles": 816
+    },
+    {
+      "name": "Tail_panel",
+      "category": "body",
+      "valid": true,
+      "solids": 1,
+      "triangles": 12
+    },
+    {
+      "name": "Tail_lights",
+      "category": "body",
+      "valid": true,
+      "solids": 2,
+      "triangles": 24
+    },
+    {
+      "name": "Rear_bumper",
+      "category": "body",
+      "valid": true,
+      "solids": 1,
+      "triangles": 12
+    },
+    {
+      "name": "Rear_diffuser",
+      "category": "body",
+      "valid": true,
+      "solids": 6,
+      "triangles": 72
+    },
+    {
+      "name": "Tires",
+      "category": "wheels",
+      "valid": true,
+      "solids": 4,
+      "triangles": 10608
+    },
+    {
+      "name": "Wheel_barrels_and_lips",
+      "category": "wheels",
+      "valid": true,
+      "solids": 12,
+      "triangles": 4896
+    },
+    {
+      "name": "Forged_split_spokes",
+      "category": "wheels",
+      "valid": true,
+      "solids": 44,
+      "triangles": 8800
+    },
+    {
+      "name": "Wheel_lugs",
+      "category": "wheels",
+      "valid": true,
+      "solids": 20,
+      "triangles": 4000
+    },
+    {
+      "name": "Brake_rotors",
+      "category": "wheels",
+      "valid": true,
+      "solids": 4,
+      "triangles": 1632
+    },
+    {
+      "name": "Brake_calipers",
+      "category": "wheels",
+      "valid": true,
+      "solids": 4,
+      "triangles": 48
+    },
+    {
+      "name": "Front_air_dam",
+      "category": "body",
+      "valid": true,
+      "solids": 1,
+      "triangles": 100
+    },
+    {
+      "name": "Front_splitter",
+      "category": "body",
+      "valid": true,
+      "solids": 1,
+      "triangles": 56
+    },
+    {
+      "name": "Splitter_support_rods",
+      "category": "body",
+      "valid": true,
+      "solids": 2,
+      "triangles": 400
+    },
+    {
+      "name": "Custom_box_frame",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 33,
+      "triangles": 396
+    },
+    {
+      "name": "Front_lower_arms",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 4,
+      "triangles": 800
+    },
+    {
+      "name": "Front_upper_arms",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 4,
+      "triangles": 800
+    },
+    {
+      "name": "Front_subframe_and_arm_towers",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 16,
+      "triangles": 2448
+    },
+    {
+      "name": "Rear_4link_lower_bars",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 2,
+      "triangles": 400
+    },
+    {
+      "name": "Rear_4link_upper_bars",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 2,
+      "triangles": 400
+    },
+    {
+      "name": "Rear_4link_frame_brackets",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 4,
+      "triangles": 48
+    },
+    {
+      "name": "Rear_4link_axle_brackets",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 4,
+      "triangles": 48
+    },
+    {
+      "name": "Air_springs",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 20,
+      "triangles": 4000
+    },
+    {
+      "name": "Front_bag_lower_plates",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 2,
+      "triangles": 24
+    },
+    {
+      "name": "Rear_bag_lower_plates",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 2,
+      "triangles": 400
+    },
+    {
+      "name": "Air_spring_upper_plates",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 4,
+      "triangles": 800
+    },
+    {
+      "name": "Bump_stops",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 6,
+      "triangles": 1200
+    },
+    {
+      "name": "Air_tank",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 1,
+      "triangles": 200
+    },
+    {
+      "name": "Air_compressors",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 2,
+      "triangles": 24
+    },
+    {
+      "name": "Hellcat_engine_block",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 4,
+      "triangles": 88
+    },
+    {
+      "name": "Hellcat_cylinder_heads",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 2,
+      "triangles": 24
+    },
+    {
+      "name": "Hellcat_valve_covers",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 2,
+      "triangles": 24
+    },
+    {
+      "name": "Supercharger_and_intake",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 2,
+      "triangles": 64
+    },
+    {
+      "name": "Supercharger_lid_ribs",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 9,
+      "triangles": 108
+    },
+    {
+      "name": "Throttle_body",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 1,
+      "triangles": 200
+    },
+    {
+      "name": "Accessory_pulleys",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 9,
+      "triangles": 1800
+    },
+    {
+      "name": "Belt_path",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 6,
+      "triangles": 1200
+    },
+    {
+      "name": "Eight_speed_automatic",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 5,
+      "triangles": 1436
+    },
+    {
+      "name": "Engine_mount_brackets",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 2,
+      "triangles": 24
+    },
+    {
+      "name": "Engine_mount_rubber_pads",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 2,
+      "triangles": 24
+    },
+    {
+      "name": "Long_tube_headers",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 26,
+      "triangles": 5200
+    },
+    {
+      "name": "Cold_air_intake",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 3,
+      "triangles": 412
+    },
+    {
+      "name": "Prop_shaft",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 3,
+      "triangles": 600
+    },
+    {
+      "name": "Ford_9in_center_section",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 3,
+      "triangles": 756
+    },
+    {
+      "name": "Ford_9in_axle_tubes",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 4,
+      "triangles": 800
+    },
+    {
+      "name": "Trans_crossmember",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 5,
+      "triangles": 60
+    },
+    {
+      "name": "Trans_mount_rubber",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 1,
+      "triangles": 12
+    },
+    {
+      "name": "Radiator",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 2,
+      "triangles": 24
+    },
+    {
+      "name": "Electric_fans_and_shroud",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 3,
+      "triangles": 412
+    },
+    {
+      "name": "Dual_exhaust",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 16,
+      "triangles": 3200
+    },
+    {
+      "name": "Fuel_cell",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 1,
+      "triangles": 12
+    },
+    {
+      "name": "Transmission_tunnel",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 0,
+      "triangles": 740
+    },
+    {
+      "name": "Cabin_floor",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 2,
+      "triangles": 272
+    },
+    {
+      "name": "Firewall",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 1,
+      "triangles": 56
+    },
+    {
+      "name": "Sport_bucket_seats",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 6,
+      "triangles": 72
+    },
+    {
+      "name": "Dashboard",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 1,
+      "triangles": 12
+    },
+    {
+      "name": "Steering_wheel",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 1,
+      "triangles": 408
+    },
+    {
+      "name": "Center_console",
+      "category": "mechanical",
+      "valid": true,
+      "solids": 1,
+      "triangles": 12
+    }
+  ]
+}
